@@ -35,6 +35,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FC2A0032278CFAF00CD6DF2 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4669416A2110E22B00E7FF73 /* ViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		0FC2A0042278CFBA00CD6DF2 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				4669416C2110E22B00E7FF73 /* Main.storyboard */,
+				466941712110E22B00E7FF73 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		0FC2A0052278CFC600CD6DF2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4669416F2110E22B00E7FF73 /* Assets.xcassets */,
+				466941742110E22B00E7FF73 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		4669415C2110E22A00E7FF73 = {
 			isa = PBXGroup;
 			children = (
@@ -55,11 +81,9 @@
 			isa = PBXGroup;
 			children = (
 				466941682110E22A00E7FF73 /* AppDelegate.swift */,
-				4669416A2110E22B00E7FF73 /* ViewController.swift */,
-				4669416C2110E22B00E7FF73 /* Main.storyboard */,
-				4669416F2110E22B00E7FF73 /* Assets.xcassets */,
-				466941712110E22B00E7FF73 /* LaunchScreen.storyboard */,
-				466941742110E22B00E7FF73 /* Info.plist */,
+				0FC2A0032278CFAF00CD6DF2 /* View Controllers */,
+				0FC2A0042278CFBA00CD6DF2 /* Storyboards */,
+				0FC2A0052278CFC600CD6DF2 /* Resources */,
 			);
 			path = "Reading List";
 			sourceTree = "<group>";
@@ -281,8 +305,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VXUQXR6S56;
-				INFOPLIST_FILE = "Reading List/Info.plist";
+				DEVELOPMENT_TEAM = E2CXT3S5CU;
+				INFOPLIST_FILE = "$(SRCROOT)/Reading List/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -299,8 +323,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VXUQXR6S56;
-				INFOPLIST_FILE = "Reading List/Info.plist";
+				DEVELOPMENT_TEAM = E2CXT3S5CU;
+				INFOPLIST_FILE = "$(SRCROOT)/Reading List/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
