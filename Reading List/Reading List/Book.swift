@@ -19,8 +19,15 @@ class Book : Equatable, Codable {
         self.hasBeenRead = false
     }
     
-    //Equatable Protocol
+    // Equatable Protocol
     static func == (lhs: Book, rhs: Book) -> Bool {
         return lhs.title == rhs.title
+    }
+}
+
+//Make print(Book) look good
+extension Book : CustomStringConvertible {
+    var description: String {
+        return "Book title: \(self.title), reason to read: \(self.reasonToRead), has been read: \(self.hasBeenRead)"
     }
 }
