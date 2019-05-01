@@ -19,8 +19,10 @@ class BookDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Don't forget to update views!
+        self.updateViews()
     }
-    
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         // The bookController will be used in both cases
@@ -40,9 +42,11 @@ class BookDetailViewController: UIViewController {
         {
             bookController.addBook(titled: self.bookNameTextField.text!, withReasonToRead: self.reasonToReadTextView.text)
         }
+        
+        navigationController?.popViewController(animated: true)
     }
     
-    func updateViews(){
+    private func updateViews(){
         // The user is editing an existing book
         if let bookToEdit = self.book
         {

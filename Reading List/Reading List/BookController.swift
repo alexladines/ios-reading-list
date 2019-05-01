@@ -10,19 +10,6 @@ import Foundation
 
 class BookController {
     private(set) var books: [Book] = []
-    
-    private var persistentURL: URL? {
-        let fileManager = FileManager.default
-        guard let documents = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
-            else
-        {
-            return nil
-        }
-        
-        // print("Documents :\(documents.path)")
-        return documents.appendingPathComponent("ReadingList.plist")
-    }
-    
     // Read Books Array
     var readBooks: [Book] {
         get {
@@ -38,11 +25,23 @@ class BookController {
     
     init() {
         // Hard coded data for testing
-        self.addBook(titled: "The Lord of the Flies", withReasonToRead: "I like anarchy.")
-        self.addBook(titled: "The Catcher in the Rye", withReasonToRead: "Last time I read it was in high school.")
-        self.addBook(titled: "The Brothers Karamazov", withReasonToRead: "Friend recommended this murder mystery.")
+        self.addBook(titled: "A", withReasonToRead: "I like anarchy.")
+        self.addBook(titled: "B", withReasonToRead: "Last time I read it was in high school.")
+        self.addBook(titled: "C", withReasonToRead: "Friend recommended this murder mystery.")
     }
     
+    private var persistentURL: URL? {
+        let fileManager = FileManager.default
+        guard let documents = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
+            else
+        {
+            return nil
+        }
+        
+        // print("Documents :\(documents.path)")
+        return documents.appendingPathComponent("ReadingList.plist")
+    }
+
     // Add a new book
     func addBook(titled title: String, withReasonToRead reasonToRead: String) {
         books.append(Book(title: title, reasonToRead: reasonToRead))

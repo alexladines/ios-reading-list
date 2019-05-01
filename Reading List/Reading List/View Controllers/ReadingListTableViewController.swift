@@ -10,12 +10,10 @@ import UIKit
 
 class ReadingListTableViewController: UITableViewController {
 
+    //MARK: - Properties
+    
     let bookController = BookController()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     // Return book from either Read or Unread array
     private func bookFor(indexPath: IndexPath) -> Book {
         if indexPath.section == 0
@@ -26,6 +24,16 @@ class ReadingListTableViewController: UITableViewController {
         {
             return bookController.unreadBooks[indexPath.row]
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    // Don't forget to reload data!
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -64,15 +72,12 @@ class ReadingListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as! BookTableViewCell
         
-        cell?.delegate = self
+        cell.book = self.bookFor(indexPath: indexPath)
+        cell.delegate = self
         
-        cell?.bookNameLabel.text = self.bookFor(indexPath: indexPath).title
-        
-        cell?.book = self.bookFor(indexPath: indexPath)
-        
-        return cell!
+        return cell
     }
     
     
@@ -128,17 +133,16 @@ class ReadingListTableViewController: UITableViewController {
 }
 extension ReadingListTableViewController : BookTableViewCellDelegate {
     func toggleHasBeenRead(for cell: BookTableViewCell) {
-        guard let book = cell.book
+        guard let indexPath = tableView.indexPath(for: cell)
         else
         {
-            print("Book is nil")
             return
         }
         
-        bookController.updateHasBeenRead(for: book)
+        let book = self.bookFor(indexPath: indexPath)
         
+        self.bookController.updateHasBeenRead(for: book)
         tableView.reloadData()
-        
     }
     
     

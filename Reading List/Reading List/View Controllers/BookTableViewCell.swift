@@ -14,7 +14,12 @@ protocol BookTableViewCellDelegate : AnyObject {
 
 class BookTableViewCell: UITableViewCell {
     
-    var book:Book?
+    var book:Book? {
+        didSet {
+            updateViews()
+        }
+    }
+    
     weak var delegate: BookTableViewCellDelegate?
     
     @IBOutlet weak var bookNameLabel: UILabel!
@@ -30,30 +35,28 @@ class BookTableViewCell: UITableViewCell {
 
     // Set label to title of book and image to read or unread image
     func updateViews() {
-        guard let title = book?.title,
-        let read = book?.hasBeenRead
+        guard let book = book
         else
         {
             return
         }
         
         // Set label
-        bookNameLabel.text = title
+        bookNameLabel.text = book.title
         
-        var readOrUnreadImage:UIImage?
-        
-        // Set image depending on read or unread
-        if read
+        // Set image according to status
+        if book.hasBeenRead
         {
-            readOrUnreadImage = UIImage(named: "checked")
+            // Set button's image
+            self.bookReadOrUnreadButton.setImage(UIImage(named: "checked"), for: .normal)
         }
         else
         {
-            readOrUnreadImage = UIImage(named: "unchecked")
+            // Set button's image
+            self.bookReadOrUnreadButton.setImage(UIImage(named: "unchecked"), for: .normal)
         }
         
-        // Set button's image
-        self.bookReadOrUnreadButton.setImage(readOrUnreadImage, for: .normal)
+        
         
     }
     
