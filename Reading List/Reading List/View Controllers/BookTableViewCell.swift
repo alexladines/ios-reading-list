@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol BookTableViewCellDelegate : AnyObject {
+    func toggleHasBeenRead(for cell: BookTableViewCell)
+}
+
 class BookTableViewCell: UITableViewCell {
+    
+    var book:Book?
+    weak var delegate: BookTableViewCellDelegate?
+    
     @IBOutlet weak var bookNameLabel: UILabel!
     @IBOutlet weak var bookReadOrUnreadButton: UIButton!
     
@@ -20,8 +28,37 @@ class BookTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-    @IBAction func bookReadOrUnreadButtonPressed(_ sender: Any) {
+    // Set label to title of book and image to read or unread image
+    func updateViews() {
+        guard let title = book?.title,
+        let read = book?.hasBeenRead
+        else
+        {
+            return
+        }
         
+        // Set label
+        bookNameLabel.text = title
+        
+        var readOrUnreadImage:UIImage?
+        
+        // Set image depending on read or unread
+        if read
+        {
+            readOrUnreadImage = UIImage(named: "checked")
+        }
+        else
+        {
+            readOrUnreadImage = UIImage(named: "unchecked")
+        }
+        
+        // Set button's image
+        self.bookReadOrUnreadButton.setImage(readOrUnreadImage, for: .normal)
+        
+    }
+    
+    @IBAction func bookReadOrUnreadButtonPressed(_ sender: Any) {
+        delegate?.toggleHasBeenRead(for: self)
     }
     
 }
